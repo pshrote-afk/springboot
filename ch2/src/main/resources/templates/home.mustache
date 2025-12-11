@@ -1,9 +1,14 @@
 <!DOCTYPE HTML>
 <body>
-
+ 
 <h3> Using Mustache for the first time</h3>
 
 <h6>Videos</h6>
+<form action='/new-video' method='post'>
+<input type='text' name='name' placeholder='video name...'>
+<button type='submit'>Add video</button>
+</form>
+
 
 <ul>
 	{{#videos}}			<!-- start loop -->
