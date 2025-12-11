@@ -1,3 +1,7 @@
 **/build/
 src/test/
 .gradle/
+src/main/resources/static/
+src/main/javascript/.parcel-cache
+src/main/javascript/node_modules/
+

@@ -30,5 +30,10 @@ public class HomeController {
 	videoService.addVideo(new Video(name));
 	return "redirect:/";
     }
-
+	
+	@GetMapping("/react")
+	public String reactMethod()
+	{
+		return "react";
+	}
 }
