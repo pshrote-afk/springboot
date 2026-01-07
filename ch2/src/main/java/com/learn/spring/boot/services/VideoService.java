@@ -1,21 +1,28 @@
 package com.learn.spring.boot.services;
 
 import java.util.*;
-import com.learn.spring.boot.pojos.*;
 import org.springframework.stereotype.Service;
 
-@Service
-public class VideoService
-{
-private List<Video> videos = new ArrayList<>(List.of(new Video("Vid 1"), new Video("Some Vid 2"), new Video("Some video which has a lenghty, long name 3")));
-public List<Video> getVideos()
-{
-return this.videos;
-}
+import com.learn.spring.boot.pojos.VideoEntity;
+import com.learn.spring.boot.services.VideoRepository;
 
-public void addVideo(Video video)
-{
-videos.add(video);
-}
+@Service
+public class VideoService {
+    private final VideoRepository videoRepository;
+
+    public VideoService(VideoRepository videoRepository)
+    {
+        this.videoRepository = videoRepository;
+    }
+
+    public List<VideoEntity> findAll()
+    {
+        return videoRepository.findAll();
+    }
+
+    public VideoEntity save(VideoEntity videoEntity)
+    {
+        return videoRepository.save(videoEntity);
+    }
 
 }
