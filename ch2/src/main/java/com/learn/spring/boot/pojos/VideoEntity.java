@@ -1,6 +1,6 @@
 package com.learn.spring.boot.pojos;
 import jakarta.persistence.*;
-@Entity
+@Entity				// an Entity represents a database table row
 public class VideoEntity
 {
     private @Id @GeneratedValue Long id;

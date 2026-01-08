@@ -1,12 +1,16 @@
 package com.learn.spring.boot.controllers;
 
+import java.util.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.learn.spring.boot.services.*;
-import com.learn.spring.boot.pojos.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+import com.learn.spring.boot.services.VideoService;
+import com.learn.spring.boot.pojos.VideoDTO;
+import com.learn.spring.boot.pojos.VideoEntity;
 @Controller
 public class HomeController {
 
@@ -20,20 +24,28 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model)
     {
-        model.addAttribute("videos", videoService.getVideos());
+        //model.addAttribute("videos", videoService.getVideos());
         return "home";
     }
 
     @PostMapping("/new-video")
-    public String newVideo(@RequestParam String name)
+    public String newVideo(@ModelAttribute VideoEntity videoEntity, Model model)
     {
-	videoService.addVideo(new Video(name));
-	return "redirect:/";
+	    videoService.save(videoEntity);
+	    return "redirect:/";
     }
-	
+/*
 	@GetMapping("/react")
 	public String reactMethod()
 	{
 		return "react";
 	}
+*/
+    @GetMapping("/multi-field-search")
+    public String multiFieldSearch(@ModelAttribute VideoDTO videoDTO, Model model)
+    {                               // @ModelAttribute binds form fields to DTO
+        List<VideoEntity> videos = videoService.findAll();
+        model.addAttribute("videos", videos);
+        return "index";
+    }
 }
