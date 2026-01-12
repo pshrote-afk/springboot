@@ -7,4 +7,5 @@ public interface VideoRepository //for writing a query, w/o writing a query
     extends JpaRepository<VideoEntity, Long> 
 {
     List<VideoEntity> findByName(String name);
+    List<VideoEntity> findByNameContainingAndDescriptionContaining(String name, String description);
 }

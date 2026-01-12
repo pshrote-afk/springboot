@@ -25,4 +25,9 @@ public class VideoService {
         return videoRepository.save(videoEntity);
     }
 
+    public List<VideoEntity> findByNameContainingAndDescriptionContaining(String name, String description)
+    {
+        return videoRepository.findByNameContainingAndDescriptionContaining(name, description);
+    }
+
 }

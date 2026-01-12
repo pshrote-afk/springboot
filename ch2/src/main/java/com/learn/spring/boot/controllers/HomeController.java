@@ -24,7 +24,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model)
     {
-        //model.addAttribute("videos", videoService.getVideos());
+        model.addAttribute("videos", videoService.findAll());
         return "home";
     }
 
@@ -44,8 +44,8 @@ public class HomeController {
     @GetMapping("/multi-field-search")
     public String multiFieldSearch(@ModelAttribute VideoDTO videoDTO, Model model)
     {                               // @ModelAttribute binds form fields to DTO
-        List<VideoEntity> videos = videoService.findAll();
-        model.addAttribute("videos", videos);
-        return "index";
+        List<VideoEntity> searchResultVideos = videoService.findByNameContainingAndDescriptionContaining(videoDTO.name(), videoDTO.description());
+        model.addAttribute("searchResultVideos", searchResultVideos);
+        return "home";
     }
 }
