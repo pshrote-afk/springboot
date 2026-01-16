@@ -1,4 +1,4 @@
-package com.learn.spring.boot.services;
+package com.learn.spring.boot.repositories;
 import java.util.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.learn.spring.boot.pojos.VideoEntity;
