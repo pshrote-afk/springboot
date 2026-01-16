@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.learn.spring.boot.services.VideoService;
 import com.learn.spring.boot.pojos.VideoDTO;
 import com.learn.spring.boot.pojos.VideoEntity;
+
+import org.springframework.security.core.Authentication;
 @Controller
 public class HomeController {
 
@@ -22,9 +24,12 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String home(Model model)
+    public String home(Model model, Authentication authentication)  
     {
+        //Session has SecurityContext, which has authentication details. But Authentication object itself is request-scoped. It is derived from session data.
+    
         model.addAttribute("videos", videoService.findAll());
+        model.addAttribute("authentication",authentication);
         return "home";
     }
 
